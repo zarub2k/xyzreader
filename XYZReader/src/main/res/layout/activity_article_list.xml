@@ -53,4 +53,10 @@
             android:padding="@dimen/list_side_margin"
             android:scrollbarStyle="outsideOverlay" />
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="animationTest"
+        android:onClick="onAnimation"/>
 </android.support.design.widget.CoordinatorLayout>

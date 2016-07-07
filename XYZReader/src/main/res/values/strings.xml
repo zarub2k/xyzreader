@@ -9,4 +9,6 @@
 
     <string name="up">Up</string>
     <string name="by">by</string>
+
+    <string name="transition_img">transition_img</string>
 </resources>

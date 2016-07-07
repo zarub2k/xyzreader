@@ -153,8 +153,11 @@ public class ArticleListActivity extends AppCompatActivity implements
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         // Do something for lollipop and above versions
                         Bundle bundle = ActivityOptionsCompat
-                                .makeSceneTransitionAnimation(ArticleListActivity.this)
+                                .makeSceneTransitionAnimation(ArticleListActivity.this,
+                                        vh.thumbnailView,
+                                        vh.thumbnailView.getTransitionName())
                                 .toBundle();
+
                         startActivity(new Intent(Intent.ACTION_VIEW,
                                         ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())))
                                 , bundle);
@@ -182,6 +185,10 @@ public class ArticleListActivity extends AppCompatActivity implements
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                holder.thumbnailView.setTransitionName(getResources().getString(R.string.transition_img));
+            }
+
             holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
@@ -204,9 +211,9 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
     }
 
-    public void onAnimation(View view) {
-        onSlideAnimator(view);
-    }
+//    public void onAnimation(View view) {
+//        onSlideAnimator(view);
+//    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void onSlideAnimator(View view) {

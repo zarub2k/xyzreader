@@ -1,5 +1,6 @@
 package com.example.xyzreader.ui;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Intent;
@@ -20,10 +21,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -160,6 +164,19 @@ public class ArticleDetailFragment extends Fragment implements
             bylineView.setText("N/A" );
             bodyView.setText("N/A");
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void doSliderAnimation(TextView bodyView) {
+        Log.v(TAG, "enters doSliderAnimation");
+        final Slide slide = new Slide(Gravity.BOTTOM);
+        slide.addTarget(bodyView);
+
+        slide.setInterpolator(
+                AnimationUtils.loadInterpolator(this.getActivity(),
+                        android.R.interpolator.linear_out_slow_in));
+        slide.setDuration(5000);
+        getActivity().getWindow().setEnterTransition(slide);
     }
 
     @Override

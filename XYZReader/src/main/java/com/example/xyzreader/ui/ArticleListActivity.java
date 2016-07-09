@@ -223,6 +223,10 @@ public class ArticleListActivity extends AppCompatActivity implements
         TransitionManager.beginDelayedTransition(mSwipeRefreshLayout, slide);
     }
 
+    /**
+     * method to handle object animator functionality
+     * @param view
+     */
     private void onObjectAnimator(View view) {
         ObjectAnimator.ofObject(view, "textColor",
                 new ArgbEvaluator(),
